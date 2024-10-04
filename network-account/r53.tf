@@ -55,11 +55,11 @@ resource "aws_route53_resolver_rule" "test" {
   resolver_endpoint_id = aws_route53_resolver_endpoint.test.id
 
   target_ip {
-    ip = "8.8.8.8"
+    ip = "8.8.8.8" # Just target Google for testing
   }
 }
 
-# Create profile
+# Create Rout 53 profile
 resource "awscc_route53profiles_profile" "test" {
   name = "test"
 }
@@ -71,6 +71,7 @@ resource "awscc_route53profiles_profile_resource_association" "zone" {
   resource_arn = aws_route53_zone.private.arn
 }
 
+# Associate resolver rule with profile
 resource "awscc_route53profiles_profile_resource_association" "rule" {
   profile_id   = awscc_route53profiles_profile.test.id
   name         = "rule"

@@ -3,9 +3,9 @@
 #     id = "rp-f37bdeed65e0448c"
 # }
 
-# Associate target VPC with profile
-# resource "awscc_route53profiles_profile_association" "vpc" {
-#     name = "vpc"
-#     resource_id = module.vpc.vpc_id
-#     profile_id = "rp-f37bdeed65e0448c" # Hardcoded since data lookup doesn't work
-# }
+# Associate target VPC with shared profile
+resource "awscc_route53profiles_profile_association" "vpc" {
+    name = "vpc"
+    resource_id = module.vpc.vpc_id
+    profile_id = "rp-f37bdeed65e0448c" # Hardcoded since data lookup doesn't work
+}
